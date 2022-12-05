@@ -1,0 +1,56 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()" id="login-form">
+  <fieldset>
+    <legend>Username</legend>
+    <input
+      id="login-username"
+      name="username"
+      type="text"
+      title="Your username"
+      formControlName="username"
+      placeholder="please enter your username"
+      [class.valid]="
+        form.get('username')?.valid && !form.get('username')?.pristine
+      "
+      [class.invalid]="
+        form.get('username')?.invalid && !form.get('username')?.pristine
+      "
+    />
+  </fieldset>
+  <fieldset>
+    <legend>Password</legend>
+    <input
+      id="login-password"
+      name="password"
+      type="password"
+      title="Your password"
+      formControlName="password"
+      placeholder="please enter your password"
+      [class.valid]="
+        form.get('password')?.valid && !form.get('password')?.pristine
+      "
+      [class.invalid]="
+        form.get('password')?.invalid && !form.get('password')?.pristine
+      "
+    />
+  </fieldset>
+
+  <div class="btn-bar">
+    <button [disabled]="!form.valid" type="submit">Submit</button>
+    <button type="reset">Reset</button>
+  </div>
+</form>
+
+<div *ngIf="!form.pristine && !form.valid" class="error-box">
+  <div *ngFor="let prop of props | keyvalue">
+    <div *ngFor="let info of prop.value | keyvalue">
+      <p
+        *ngIf="
+          form.get(prop.key)?.hasError(info.key) &&
+          !form.get(prop.key)?.pristine
+        "
+      >
+        {{ info.value[1] }}
+      </p>
+    </div>
+  </div>
+</div>

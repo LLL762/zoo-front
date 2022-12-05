@@ -1,0 +1,17 @@
+$border-invalid: red;
+$border-valid: green;
+$text-invalid: red;
+
+.valid {
+  border-color: $border-valid;
+  &:focus {
+    outline-color: $border-valid;
+  }
+}
+
+.invalid {
+  border-color: $border-invalid;
+  &:focus {
+    outline-color: $border-invalid;
+  }
+}

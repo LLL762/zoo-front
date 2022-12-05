@@ -1,0 +1,22 @@
+@import "validation";
+
+#login-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.4em;
+  border: 1px black solid;
+  padding: 2rem;
+
+  input {
+    min-width: 20em;
+  }
+}
+
+.btn-bar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.4em;
+}
