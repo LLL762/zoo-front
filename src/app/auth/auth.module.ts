@@ -5,6 +5,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { LoginService } from './login.service';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptor } from './auth.interceptor';
 
 const routes = [{ path: 'login', component: LoginComponent }];
 
@@ -16,7 +18,9 @@ const routes = [{ path: 'login', component: LoginComponent }];
     ReactiveFormsModule,
     RouterModule.forChild(routes),
   ],
-  providers: [LoginService]
+  providers: [
+    LoginService,
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+  ],
 })
-
-export class AuthModule { }
+export class AuthModule {}

@@ -4,7 +4,14 @@
 
 export const environment = {
   production: false,
-  api: { urls: { BASE: 'http://localhost:3000/api', LOGIN: '/login' } },
+  api: {
+    urls: {
+      BASE: 'http://localhost:3000/api',
+      LOGIN: '/login',
+      REFRESH_TOKEN: '/refresh-token',
+    },
+  },
+  jwt: { bearerPrefix: 'Bearer ' },
 };
 
 /*

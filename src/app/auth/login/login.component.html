@@ -1,4 +1,9 @@
-<form [formGroup]="form" (ngSubmit)="onSubmit()" id="login-form">
+<form
+  *ngIf="isLogOut()"
+  [formGroup]="form"
+  (ngSubmit)="onSubmit()"
+  id="login-form"
+>
   <fieldset>
     <legend>Username</legend>
     <input

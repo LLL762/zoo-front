@@ -14,32 +14,47 @@ export class LoginComponent implements OnInit {
   readonly propsKeys = Object.keys(this.props);
   errMsg?: string;
 
-  constructor(private fb: FormBuilder, private loginService: LoginService, private router: Router) { }
+  constructor(
+    private fb: FormBuilder,
+    private loginService: LoginService,
+    private router: Router
+  ) {}
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+    console.log(this.loginService.isLogIn());
+  }
 
   form = this.fb.group({
     username: [
       '',
-      [Validators.required,
-      Validators.minLength(this.props.username.minlength.value),
-      Validators.maxLength(this.props.username.maxlength.value)],
+      [
+        Validators.required,
+        Validators.minLength(this.props.username.minlength.value),
+        Validators.maxLength(this.props.username.maxlength.value),
+      ],
     ],
     password: [
       '',
-      [Validators.required,
-      Validators.minLength(this.props.password.minlength.value),
-      Validators.maxLength(this.props.password.maxlength.value)],
+      [
+        Validators.required,
+        Validators.minLength(this.props.password.minlength.value),
+        Validators.maxLength(this.props.password.maxlength.value),
+      ],
     ],
   });
 
+  isLogOut() {
+    return this.loginService.getStatus() == 'LOG_OUT';
+  }
+
   onSubmit() {
-    this.loginService.logIn(this.form.value as LoginRequest)
-      .subscribe(
-        {
-          next: data => { this.router.navigate(["/"]) },
-          error: err => { console.log(err), this.errMsg = err.error }
-        }
-      );
+    this.loginService.logIn(this.form.value as LoginRequest).subscribe({
+      next: (data) => {
+        this.router.navigate(['/']);
+      },
+      error: (err) => {
+        console.log(err), (this.errMsg = err.error);
+      },
+    });
   }
 }
