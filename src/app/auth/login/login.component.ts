@@ -20,9 +20,7 @@ export class LoginComponent implements OnInit {
     private router: Router
   ) {}
 
-  ngOnInit(): void {
-    console.log(this.loginService.isLogIn());
-  }
+  ngOnInit(): void {}
 
   form = this.fb.group({
     username: [

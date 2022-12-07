@@ -9,6 +9,14 @@ export const environment = {
       BASE: 'http://localhost:3000/api',
       LOGIN: '/login',
       REFRESH_TOKEN: '/refresh-token',
+      TASKS: '/tasks',
+    },
+  },
+  app: {
+    uris: {
+      BASE: '',
+      TASKS_LIST: 'tasks-list',
+      LOGIN: 'login',
     },
   },
   jwt: { bearerPrefix: 'Bearer ' },

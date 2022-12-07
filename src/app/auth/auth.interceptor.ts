@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 import {
   HttpRequest,
   HttpHandler,
@@ -20,36 +20,55 @@ export class AuthInterceptor implements HttpInterceptor {
   constructor(private loginService: LoginService, private router: Router) {}
 
   intercept(
-    request: HttpRequest<unknown>,
+    req: HttpRequest<unknown>,
     next: HttpHandler
   ): Observable<HttpEvent<unknown>> {
     const logInStatus = this.loginService.getStatus();
+    let reqCopy: HttpRequest<unknown>;
 
-    if (doNotCheck.includes(request.url)) {
-      next.handle(request);
+    if (!this.isApiRequest(req) || doNotCheck.includes(req.url)) {
+      next.handle(req);
     }
 
     switch (logInStatus) {
       case 'LOG_IN':
-        this.setAuthHeader(request);
-        break;
+        return next.handle(this.setAuthHeader(req));
       case 'NEED_REFRESH':
-        this.loginService.refreshToken();
-        this.setAuthHeader(request);
-        break;
+        this.loginService.refreshToken().subscribe({
+          error: (err) => {
+            console.log(err);
+            this.redirectToLogin();
+          },
+        });
+        return next.handle(this.setAuthHeader(req));
       default:
-        this.router.navigate([EnvUtil.getUrl('LOGIN')]);
+        this.redirectToLogin();
         break;
     }
 
-    return next.handle(request);
+    return next.handle(req);
+  }
+
+  redirectToLogin() {
+    this.router.navigate([EnvUtil.getAppUri('LOGIN')]);
+  }
+
+  isApiRequest(req: HttpRequest<unknown>) {
+    return req.url.startsWith(EnvUtil.getUrl('BASE'));
   }
 
   setAuthHeader(req: HttpRequest<unknown>) {
-    const bearerToken = localStorage.getItem('bearer-token');
+    const bearerToken = localStorage.getItem('bearer_token');
+
     if (!bearerToken) {
-      throw new Error('');
+      throw new Error('No token !');
     }
-    req.headers.set('Authorization', this.bearerPrefix + bearerToken);
+
+    return req.clone({
+      headers: req.headers.append(
+        'Authorization',
+        this.bearerPrefix + bearerToken
+      ),
+    });
   }
 }

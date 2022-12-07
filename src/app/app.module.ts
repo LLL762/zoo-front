@@ -6,6 +6,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AppInterceptor } from './app.interceptor';
 import { AuthModule } from './auth/auth.module';
+import { ContentModule } from './content/content.module';
+import { TasksModule } from './content/tasks/tasks.module';
 import { NavModule } from './nav/nav.module';
 
 @NgModule({
@@ -14,6 +16,7 @@ import { NavModule } from './nav/nav.module';
     BrowserModule,
     AuthModule,
     NavModule,
+    ContentModule,
     AppRoutingModule,
     HttpClientModule,
   ],

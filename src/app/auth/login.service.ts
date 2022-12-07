@@ -1,11 +1,9 @@
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
-import { catchError, of, shareReplay, tap } from 'rxjs';
+import { HttpClient, HttpResponse } from '@angular/common/http';
+import { shareReplay, tap } from 'rxjs';
 import { LoginRequest } from './model/LoginRequest';
-import * as moment from 'moment';
 import EnvUtil from 'src/app/util/EnvUtil';
-import { RefreshTokenRequest } from './model/RefreshTokenRequest';
 
 @Injectable()
 export class LoginService {
@@ -75,14 +73,13 @@ export class LoginService {
 
   isLogIn() {
     const exp = localStorage.getItem('bearer_token_exp');
-    return exp != null && moment().isBefore(moment(parseInt(exp) * 1000));
+
+    return exp != null && Date.now() < +exp * 1000;
   }
   canRefresh() {
     const exp = localStorage.getItem('refresh_token_exp');
     const margin = 1000;
-    return (
-      exp != null && moment().isBefore(moment(parseInt(exp) * 1000 - margin))
-    );
+    return exp != null && Date.now() < +exp * 1000 - margin;
   }
 
   getStatus(): LogInStatus {

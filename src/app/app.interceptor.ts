@@ -12,10 +12,13 @@ export class AppInterceptor implements HttpInterceptor {
   constructor() {}
 
   intercept(
-    request: HttpRequest<unknown>,
+    req: HttpRequest<unknown>,
     next: HttpHandler
   ): Observable<HttpEvent<unknown>> {
-    request.headers.set('Content-Type', 'application/json');
-    return next.handle(request);
+    const reqCopy = req.clone({
+      headers: req.headers.append('Content-Type', 'application/json'),
+    });
+
+    return next.handle(reqCopy);
   }
 }
