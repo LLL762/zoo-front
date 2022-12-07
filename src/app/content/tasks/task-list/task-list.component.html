@@ -2,5 +2,11 @@
 <div *ngIf="tasks">
   <div *ngFor="let task of tasks">
     <p>{{ task.name }}</p>
+    <p>{{ task.status }}</p>
+    <p>{{ task.priority }}</p>
+    <p>{{ task.description }}</p>
+    <div *ngFor="let user of task.assignTo">
+      <p>{{ user.firstname }} {{ user.lastname }}</p>
+    </div>
   </div>
 </div>

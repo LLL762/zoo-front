@@ -26,23 +26,25 @@ export class LoginService {
   }
 
   refreshToken() {
-    const refreshToken = localStorage.getItem('refresh-token-exp');
+    const refreshToken = localStorage.getItem('refresh_token');
 
     if (!refreshToken) {
       throw new Error();
     }
 
     return this.http
-      .post<any>(this.refreshUrl, refreshToken, { observe: 'response' })
+      .post<any>(
+        this.refreshUrl,
+        { refreshToken: refreshToken },
+        { observe: 'response' }
+      )
       .pipe(
-        tap((res: HttpResponse<any>) => {
-          this.storeTokens(res);
-        }),
+        tap((resp) => resp),
         shareReplay()
       );
   }
 
-  private storeTokens(res: HttpResponse<any>) {
+  storeTokens(res: HttpResponse<any>) {
     const authorizationHeader = res.headers.get('Authorization');
     if (
       !authorizationHeader ||

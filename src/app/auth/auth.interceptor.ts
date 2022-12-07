@@ -24,17 +24,21 @@ export class AuthInterceptor implements HttpInterceptor {
     next: HttpHandler
   ): Observable<HttpEvent<unknown>> {
     const logInStatus = this.loginService.getStatus();
-    let reqCopy: HttpRequest<unknown>;
 
     if (!this.isApiRequest(req) || doNotCheck.includes(req.url)) {
       next.handle(req);
     }
+
+    console.log(logInStatus);
 
     switch (logInStatus) {
       case 'LOG_IN':
         return next.handle(this.setAuthHeader(req));
       case 'NEED_REFRESH':
         this.loginService.refreshToken().subscribe({
+          next: (resp) => {
+            this.loginService.storeTokens(resp);
+          },
           error: (err) => {
             console.log(err);
             this.redirectToLogin();
