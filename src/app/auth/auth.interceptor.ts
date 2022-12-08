@@ -1,11 +1,11 @@
-import { Injectable, OnInit } from '@angular/core';
+import { Injectable } from '@angular/core';
 import {
   HttpRequest,
   HttpHandler,
   HttpEvent,
   HttpInterceptor,
 } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { catchError, EMPTY, Observable, switchMap } from 'rxjs';
 import { LoginService } from './login.service';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
@@ -26,7 +26,7 @@ export class AuthInterceptor implements HttpInterceptor {
     const logInStatus = this.loginService.getStatus();
 
     if (!this.isApiRequest(req) || doNotCheck.includes(req.url)) {
-      next.handle(req);
+      return next.handle(req);
     }
 
     console.log(logInStatus);
@@ -35,22 +35,18 @@ export class AuthInterceptor implements HttpInterceptor {
       case 'LOG_IN':
         return next.handle(this.setAuthHeader(req));
       case 'NEED_REFRESH':
-        this.loginService.refreshToken().subscribe({
-          next: (resp) => {
-            this.loginService.storeTokens(resp);
-          },
-          error: (err) => {
+        return this.loginService.refreshToken().pipe(
+          switchMap((resp) => next.handle(this.setAuthHeader(req))),
+          catchError((err) => {
             console.log(err);
             this.redirectToLogin();
-          },
-        });
-        return next.handle(this.setAuthHeader(req));
+            return EMPTY;
+          })
+        );
       default:
         this.redirectToLogin();
-        break;
+        return EMPTY;
     }
-
-    return next.handle(req);
   }
 
   redirectToLogin() {

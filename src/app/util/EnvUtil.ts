@@ -6,11 +6,11 @@ const baseUrl = environment.api.urls.BASE;
 const baseAppUri = environment.app.uris.BASE;
 
 const getUrl = (key: UrlKey) => {
-  return baseUrl + environment.api.urls[key];
+  return key == 'BASE' ? baseUrl : baseUrl + environment.api.urls[key];
 };
 
 const getAppUri = (key: AppUriKey) => {
-  return baseAppUri + environment.app.uris[key];
+  return key == 'BASE' ? baseAppUri : baseAppUri + environment.app.uris[key];
 };
 
 export default { getUrl, getAppUri };

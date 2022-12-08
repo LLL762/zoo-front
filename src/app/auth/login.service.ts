@@ -21,6 +21,7 @@ export class LoginService {
         tap((res: HttpResponse<any>) => {
           this.storeTokens(res);
         }),
+
         shareReplay()
       );
   }
@@ -39,7 +40,9 @@ export class LoginService {
         { observe: 'response' }
       )
       .pipe(
-        tap((resp) => resp),
+        tap((resp) => {
+          this.storeTokens(resp);
+        }),
         shareReplay()
       );
   }
