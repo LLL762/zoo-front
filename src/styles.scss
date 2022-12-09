@@ -1,1 +1,10 @@
 @import "reset";
+@import "variables";
+
+main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: $main-max-width;
+  min-width: $main-min-width;
+}

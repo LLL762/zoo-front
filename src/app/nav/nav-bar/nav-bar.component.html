@@ -1,1 +1,15 @@
 <button (click)="logOut()" type="button">log out</button>
+
+<button (click)="changeFont('Dyslexia')" type="button">change font</button>
+
+<select
+  #t
+  (change)="changeFont(t.value)"
+  name="font-options"
+  id="font-options"
+  title="Choose your font"
+  [value]="fontStyleUrl"
+>
+  <option value="font-default.css">Default</option>
+  <option value="font-dyslexia.css">Dyslexia</option>
+</select>

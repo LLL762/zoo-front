@@ -28,7 +28,17 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+              {
+                "input": "./src/sass/fonts/_fonts_default.scss",
+                "bundleName": "font-default",
+                "inject": true
+              },
+              {
+                "input": "./src/sass/fonts/_fonts_dyslexia.scss",
+                "bundleName": "font-dyslexia",
+                "inject": false
+              }
             ],
             "stylePreprocessorOptions": {
               "includePaths": [

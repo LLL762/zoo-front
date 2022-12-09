@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginService } from 'src/app/auth/login.service';
+import { FontUrl } from 'src/app/preferences/Preferences';
+import { PreferencesService } from 'src/app/preferences/preferences.service';
 
 @Component({
   selector: 'app-nav-bar',
@@ -7,11 +9,22 @@ import { LoginService } from 'src/app/auth/login.service';
   styleUrls: ['./nav-bar.component.scss'],
 })
 export class NavBarComponent implements OnInit {
-  constructor(private loginService: LoginService) {}
+  fontStyleUrl?: string;
+
+  constructor(
+    private loginService: LoginService,
+    private preferenceService: PreferencesService
+  ) {}
 
   logOut() {
     this.loginService.logOut();
   }
 
-  ngOnInit(): void {}
+  changeFont(fontUrl: string) {
+    this.preferenceService.setFont(fontUrl as FontUrl);
+  }
+
+  ngOnInit(): void {
+    this.fontStyleUrl = this.preferenceService.getAndApplyFont();
+  }
 }
