@@ -12,7 +12,7 @@ export class LoginService {
 
   private bearerSuffix = environment.jwt.bearerPrefix;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   logIn(loginReq: LoginRequest) {
     return this.http

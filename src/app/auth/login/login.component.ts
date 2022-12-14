@@ -18,9 +18,9 @@ export class LoginComponent implements OnInit {
     private fb: FormBuilder,
     private loginService: LoginService,
     private router: Router
-  ) {}
+  ) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   form = this.fb.group({
     username: [
@@ -49,6 +49,7 @@ export class LoginComponent implements OnInit {
     this.loginService.logIn(this.form.value as LoginRequest).subscribe({
       next: (data) => {
         this.router.navigate(['/']);
+
       },
       error: (err) => {
         console.log(err), (this.errMsg = err.error);

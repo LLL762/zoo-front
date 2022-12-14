@@ -1,0 +1,33 @@
+.icon-btn {
+    border-radius: 1em;
+    border : unset;
+    background-color: inherit;
+    height : 2.2em;
+    width : 2.2em;
+    padding: 0.2em;
+
+    &:hover{
+        background-color: rgb(197, 197, 197) ;
+           
+    }  
+    
+    &:active{
+        animation:  0.5s linear alternate rotate360;
+    }
+
+    svg {
+        margin: auto;
+    }
+
+}
+
+
+@keyframes rotate360 {
+    from {
+      transform: rotateZ(0);
+    }
+  
+    to {
+      transform: rotateZ(360deg);
+    }
+  }

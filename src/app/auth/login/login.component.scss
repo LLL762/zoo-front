@@ -1,5 +1,39 @@
 @import "validation";
 
+@keyframes pulse {
+  0% {
+    opacity: 0.5;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 0.75;
+    transform: scale(1.05);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes pulse-outline {
+  0% {
+    opacity: 0.75;
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.05);
+  }
+
+  100% {
+    opacity: 1;
+    border-color: inherit;
+    transform: scale(1);
+  }
+}
+
 #login-form {
   display: flex;
   flex-direction: column;
@@ -7,11 +41,43 @@
   align-items: center;
   gap: 0.4em;
   border: 1px black solid;
+  border-radius: 5px;
+  box-shadow: 3px 3px 2px black;
   padding: 2rem;
 
   input {
     min-width: 20em;
   }
+
+  fieldset {
+    display: flex;
+    gap: 0.25em;
+    svg {
+      display: inline;
+      height: 1.5em;
+      width: 1.5em;
+    }
+  }
+}
+
+button[type="submit"] {
+  &:enabled {
+    animation: 2s ease-in pulse-outline;
+  }
+}
+
+.fill-valid {
+  fill: green;
+  animation: 1s linear pulse;
+}
+
+.fill-pristine {
+  fill: grey;
+}
+
+.fill-invalid {
+  fill: red;
+  animation: 1s linear pulse;
 }
 
 .btn-bar {
