@@ -1,18 +1,6 @@
 <div id="nav-content">
   <button *ngIf="!isLogOut()" (click)="logOut()" type="button">log out</button>
 
-  <select
-    #t
-    (change)="changeFont(t.value)"
-    name="font-options"
-    id="font-options"
-    title="Choose your font"
-    [value]="fontStyleUrl"
-  >
-    <option value="font-default.css">Default</option>
-    <option value="font-dyslexia.css">Dyslexia</option>
-  </select>
-
   <button class="icon-btn" type="button" title="home">
     <svg>
       <path

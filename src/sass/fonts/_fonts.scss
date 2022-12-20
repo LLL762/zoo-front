@@ -1,0 +1,12 @@
+@font-face {
+  font-family: "OpenDyslexiaRegular";
+  src: url("/assets/fonts/OpenDyslexic-Regular.otf") format("opentype");
+}
+
+.font-helvetica {
+  font-family: Helvetica, Verdana, sans-serif;
+}
+
+.font-dislexia {
+  font-family: "OpenDyslexiaRegular", Verdana, sans-serif;
+}

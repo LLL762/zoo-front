@@ -1,0 +1,13 @@
+<div id="settings-content">
+  <select
+    #theme
+    (change)="setTheme(theme.value)"
+    name="themes-options"
+    title="Choose your theme"
+    [value]="baseModel?.theme?.name"
+  >
+    <option *ngFor="let theme of baseModel?.themes">
+      {{ theme.name }}
+    </option>
+  </select>
+</div>

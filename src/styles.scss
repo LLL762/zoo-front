@@ -1,6 +1,11 @@
 @import "reset";
 @import "variables";
 
+* {
+  color: var(--txt-primary);
+  background-color: var(--bg-primary);
+}
+
 main {
   display: flex;
   align-items: center;

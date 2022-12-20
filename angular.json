@@ -23,27 +23,22 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
-            "assets": [
-              "src/favicon.ico",
-              "src/assets"
-            ],
+            "assets": ["src/favicon.ico", "src/assets"],
             "styles": [
               "src/styles.scss",
               {
-                "input": "./src/sass/fonts/_fonts_default.scss",
-                "bundleName": "font-default",
-                "inject": true
+                "input": "./src/sass/themes/_theme_light.scss",
+                "bundleName": "theme_light",
+                "inject": false
               },
               {
-                "input": "./src/sass/fonts/_fonts_dyslexia.scss",
-                "bundleName": "font-dyslexia",
+                "input": "./src/sass/themes/_theme_dark.scss",
+                "bundleName": "theme_dark",
                 "inject": false
               }
             ],
             "stylePreprocessorOptions": {
-              "includePaths": [
-                "./src/sass"
-              ]
+              "includePaths": ["./src/sass", "./src/sass/themes"]
             },
             "scripts": []
           },
@@ -106,13 +101,8 @@
             "tsConfig": "tsconfig.spec.json",
             "karmaConfig": "karma.conf.js",
             "inlineStyleLanguage": "scss",
-            "assets": [
-              "src/favicon.ico",
-              "src/assets"
-            ],
-            "styles": [
-              "src/styles.scss"
-            ],
+            "assets": ["src/favicon.ico", "src/assets"],
+            "styles": ["src/styles.scss"],
             "scripts": []
           }
         }
