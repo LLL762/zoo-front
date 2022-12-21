@@ -4,10 +4,26 @@
     (change)="setTheme(theme.value)"
     name="themes-options"
     title="Choose your theme"
-    [value]="baseModel?.theme?.name"
   >
-    <option *ngFor="let theme of baseModel?.themes">
+    <option
+      *ngFor="let theme of settingsModel?.themes"
+      [selected]="theme.name == settingsModel?.theme?.name"
+    >
       {{ theme.name }}
+    </option>
+  </select>
+
+  <select
+    #font
+    (change)="setFont(font.value)"
+    name="font-options"
+    title="Choose your font"
+  >
+    <option
+      *ngFor="let font of settingsModel?.fonts"
+      [selected]="font.name == settingsModel?.font?.name"
+    >
+      {{ font.name }}
     </option>
   </select>
 </div>

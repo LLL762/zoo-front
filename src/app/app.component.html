@@ -3,11 +3,15 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      [href]="settingsModel?.theme?.cssUrl ?? '#' | safe : 'resourceUrl'"
+    />
     <title>Document</title>
   </head>
-  <body [ngClass]="fontClass">
+  <body [ngClass]="settingsModel?.font?.cssClass">
     <nav>
-      <app-nav-bar></app-nav-bar>
+      <app-nav-bar [settingsModel]="settingsModel"></app-nav-bar>
     </nav>
     <main>
       <router-outlet></router-outlet>

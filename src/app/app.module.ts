@@ -7,10 +7,11 @@ import { AppInterceptor } from './app.interceptor';
 import { AuthModule } from './auth/auth.module';
 import { ContentModule } from './content/content.module';
 import { NavModule } from './nav/nav.module';
+import { SafePipe } from './pipes/safe.pipe';
 
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, SafePipe],
   imports: [
     BrowserModule,
     AuthModule,

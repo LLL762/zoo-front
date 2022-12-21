@@ -38,7 +38,7 @@
               }
             ],
             "stylePreprocessorOptions": {
-              "includePaths": ["./src/sass", "./src/sass/themes"]
+              "includePaths": ["./src/sass/", "./src/sass/themes"]
             },
             "scripts": []
           },

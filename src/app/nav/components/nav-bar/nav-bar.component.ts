@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { LoginService, LogInStatus } from 'src/app/auth/login.service';
+import { SettingsModel } from '../../model/settings.model';
 
 @Component({
   selector: 'app-nav-bar',
@@ -7,7 +8,7 @@ import { LoginService, LogInStatus } from 'src/app/auth/login.service';
   styleUrls: ['./nav-bar.component.scss'],
 })
 export class NavBarComponent implements OnInit {
-  fontStyleUrl?: string;
+  @Input() settingsModel?: SettingsModel
 
   constructor(
     private loginService: LoginService,

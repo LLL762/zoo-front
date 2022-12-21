@@ -1,5 +1,5 @@
-import { Component, OnInit, Output } from '@angular/core';
-import { Theme, ThemeName } from '../../configs/settings.config';
+import { Component, Input, OnInit, Output } from '@angular/core';
+import { ThemeName } from '../../configs/settings.config';
 import { SettingsModel } from '../../model/settings.model';
 import { SettingsService } from '../../services/settings.service';
 
@@ -8,19 +8,31 @@ import { SettingsService } from '../../services/settings.service';
   templateUrl: './settings-tab.component.html',
   styleUrls: ['./settings-tab.component.scss']
 })
-@Output()
-export class SettingsTabComponent implements OnInit {
-  baseModel?: SettingsModel;
+
+export class SettingsTabComponent {
+  @Input() settingsModel?: SettingsModel;
 
 
   constructor(private settingsService: SettingsService) { }
 
-  ngOnInit(): void {
-    this.baseModel = this.settingsService.buildModel();
+  setTheme(themeName: string) {
+    if (this.settingsModel != undefined && themeName !== this.settingsModel.theme?.name) {
+      const newTheme = this.settingsService.setTheme(themeName);
+      if (newTheme) {
+        this.settingsModel.theme = newTheme;
+      }
+    }
   }
 
-  setTheme(theme: string) {
-    this.settingsService.setTheme(theme);
-  }
 
+  setFont(fontName: string) {
+    if (this.settingsModel != undefined && fontName !== this.settingsModel.font?.name) {
+      const newFont = this.settingsService.setFont(fontName);
+      if (newFont) {
+        this.settingsModel.font = newFont;
+      }
+    }
+    console.log(this.settingsModel?.font);
+
+  }
 }
