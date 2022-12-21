@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { ThemeName } from '../configs/settings.config';
+import { FontName, ThemeName } from '../configs/settings.config';
 import { SettingsModel } from '../model/settings.model';
+import { FontService } from './settings/font.service';
 import { ThemeService } from './settings/theme.service';
 
 
@@ -9,16 +10,18 @@ import { ThemeService } from './settings/theme.service';
 })
 export class SettingsService {
 
-  readonly themeService: ThemeService;
 
-  constructor(themeService: ThemeService) {
-    this.themeService = themeService;
+
+  constructor(private themeService: ThemeService, private fontService: FontService) {
+
   }
 
   buildModel(): SettingsModel {
     return {
       themes: this.themeService.getThemes(),
-      theme: this.themeService.getCurrentTheme()
+      fonts: this.fontService.getFonts(),
+      theme: this.themeService.loadTheme(),
+      font: this.fontService.loadFont(),
     }
   }
 
@@ -26,8 +29,19 @@ export class SettingsService {
     if (!this.themeService.isThemeName(themeName)) {
       return;
     }
-    this.themeService.setTheme(themeName as ThemeName);
+    return this.themeService.saveTheme(themeName as ThemeName);
   };
+
+  setFont(fontName: string) {
+    if (!this.fontService.isFontName(fontName)) {
+      return;
+    }
+    return this.fontService.saveFont(fontName as FontName);
+  };
+
+
+
+
 }
 
 
