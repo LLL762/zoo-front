@@ -6,6 +6,11 @@
   background-color: var(--bg-primary);
 }
 
+header {
+  max-width: $main-max-width;
+  min-width: $main-min-width;
+}
+
 main {
   display: flex;
   align-items: center;

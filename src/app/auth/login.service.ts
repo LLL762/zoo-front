@@ -4,6 +4,7 @@ import { HttpClient, HttpResponse } from '@angular/common/http';
 import { shareReplay, tap } from 'rxjs';
 import { LoginRequest } from './model/LoginRequest';
 import EnvUtil from 'src/app/util/EnvUtil';
+import { AppUser } from './model/AppUser';
 
 @Injectable()
 export class LoginService {
@@ -19,7 +20,7 @@ export class LoginService {
       .post<any>(this.loginUrl, loginReq, { observe: 'response' })
       .pipe(
         tap((res: HttpResponse<any>) => {
-          this.storeTokens(res);
+          return this.storeTokens(res);
         }),
 
         shareReplay()
@@ -61,26 +62,29 @@ export class LoginService {
     const refreshPayload = JSON.parse(atob(refreshToken.split('.')[1]));
     localStorage.setItem('bearer_token', bearerToken);
     localStorage.setItem('refresh_token', refreshToken);
-    localStorage.setItem('username', bearerPayload.username);
-    localStorage.setItem('userId', bearerPayload.id);
     localStorage.setItem('bearer_token_exp', bearerPayload.exp);
     localStorage.setItem('refresh_token_exp', refreshPayload.exp);
+    return AppUser.fromJwt(bearerToken);
   }
 
   logOut() {
     localStorage.removeItem('bearer_token');
-    localStorage.removeItem('username');
-    localStorage.removeItem('userId');
     localStorage.removeItem('bearer_token_exp');
     localStorage.removeItem('refresh_token');
     localStorage.removeItem('refresh_token_exp');
   }
 
+
+  getUser(): AppUser | undefined {
+    const bearer = localStorage.getItem('bearer_token');
+    return AppUser.fromJwt(bearer);
+  }
+
   isLogIn() {
     const exp = localStorage.getItem('bearer_token_exp');
-
     return exp != null && Date.now() < +exp * 1000;
   }
+
   canRefresh() {
     const exp = localStorage.getItem('refresh_token_exp');
     const margin = 1000;

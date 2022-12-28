@@ -1,5 +1,4 @@
-import { Component, Input, OnInit, Output } from '@angular/core';
-import { ThemeName } from '../../configs/settings.config';
+import { Component, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { SettingsModel } from '../../model/settings.model';
 import { SettingsService } from '../../services/settings.service';
 
@@ -15,6 +14,7 @@ export class SettingsTabComponent {
 
   constructor(private settingsService: SettingsService) { }
 
+
   setTheme(themeName: string) {
     if (this.settingsModel != undefined && themeName !== this.settingsModel.theme?.name) {
       const newTheme = this.settingsService.setTheme(themeName);
@@ -24,7 +24,6 @@ export class SettingsTabComponent {
     }
   }
 
-
   setFont(fontName: string) {
     if (this.settingsModel != undefined && fontName !== this.settingsModel.font?.name) {
       const newFont = this.settingsService.setFont(fontName);
@@ -32,7 +31,7 @@ export class SettingsTabComponent {
         this.settingsModel.font = newFont;
       }
     }
-    console.log(this.settingsModel?.font);
-
   }
+
+
 }

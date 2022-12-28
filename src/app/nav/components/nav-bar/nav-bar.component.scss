@@ -1,6 +1,21 @@
 @import "buttons";
 
-#nav-content{
-    display: flex;
-    align-items: center;
+#nav-content {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  margin-bottom: 2rem;
+  width: 100%;
+}
+
+#app-title-container {
+  flex: 1 0 15em;
+  text-align: center;
+  h1 {
+    margin-bottom: 0.1rem;
+  }
+  p {
+    font-size: xx-small;
+    margin-top: 0.2rem;
+  }
 }

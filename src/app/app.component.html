@@ -10,9 +10,9 @@
     <title>Document</title>
   </head>
   <body [ngClass]="settingsModel?.font?.cssClass">
-    <nav>
+    <header>
       <app-nav-bar [settingsModel]="settingsModel"></app-nav-bar>
-    </nav>
+    </header>
     <main>
       <router-outlet></router-outlet>
     </main>

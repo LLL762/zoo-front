@@ -1,33 +1,41 @@
 .icon-btn {
-    border-radius: 1em;
-    border : unset;
-    background-color: inherit;
-    height : 2.2em;
-    width : 2.2em;
-    padding: 0.2em;
+  border-radius: 1em;
+  border: unset;
+  background-color: inherit;
+  padding: 0.1em;
+  display: flex;
+  flex-direction: column;
+  height: 4em;
+  width: 4em;
+  text-align: center;
+  justify-content: center;
+  justify-items: center;
+  font-family: unset;
+  min-width: 4em;
 
-    &:hover{
-        background-color: rgb(197, 197, 197) ;
-           
-    }  
-    
-    &:active{
-        animation:  0.5s linear alternate rotate360;
-    }
+  &:hover {
+    background-color: rgb(197, 197, 197);
+  }
 
-    svg {
-        margin: auto;
-    }
+  p {
+    margin: auto;
+    margin-top: 0.05em;
+  }
 
+  svg {
+    margin: auto;
+    margin-bottom: 0.1em;
+    height: 1.5em;
+    width: 1.5em;
+  }
 }
 
-
 @keyframes rotate360 {
-    from {
-      transform: rotateZ(0);
-    }
-  
-    to {
-      transform: rotateZ(360deg);
-    }
+  from {
+    transform: rotateZ(0);
   }
+
+  to {
+    transform: rotateZ(360deg);
+  }
+}

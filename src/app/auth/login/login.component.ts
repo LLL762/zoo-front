@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LoginService } from '../login.service';
+import { AppUser } from '../model/AppUser';
 import { LoginRequest } from '../model/LoginRequest';
 
 @Component({
@@ -13,6 +14,7 @@ export class LoginComponent implements OnInit {
   readonly props = LoginRequest.properties;
   readonly propsKeys = Object.keys(this.props);
   errMsg?: string;
+
 
   constructor(
     private fb: FormBuilder,
@@ -49,7 +51,6 @@ export class LoginComponent implements OnInit {
     this.loginService.logIn(this.form.value as LoginRequest).subscribe({
       next: (data) => {
         this.router.navigate(['/']);
-
       },
       error: (err) => {
         console.log(err), (this.errMsg = err.error);

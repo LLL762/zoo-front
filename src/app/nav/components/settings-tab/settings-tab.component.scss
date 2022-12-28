@@ -1,4 +1,21 @@
-#settings-content{
-    position: fixed;
-    right: 20px;
+#settings-content {
+  display: flex;
+  padding: 0.8em;
+  background-color: aqua;
+  flex-direction: column;
+  gap: 0.6em;
+  position: fixed;
+  right: 5%;
+  animation: growDown 150ms ease-in-out;
+}
+
+@keyframes growDown {
+  0% {
+    max-height: 0;
+    overflow: hidden;
+  }
+
+  100% {
+    max-height: unset;
+  }
 }

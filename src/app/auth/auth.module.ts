@@ -7,8 +7,10 @@ import { RouterModule } from '@angular/router';
 import { LoginService } from './login.service';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './auth.interceptor';
+import { AppRoutes } from '../configs/routes';
 
-const routes = [{ path: 'login', component: LoginComponent }];
+
+const routes = [{ path: AppRoutes.getUri('login'), component: LoginComponent }];
 
 @NgModule({
   declarations: [LoginComponent],
@@ -23,4 +25,4 @@ const routes = [{ path: 'login', component: LoginComponent }];
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
   ],
 })
-export class AuthModule {}
+export class AuthModule { }

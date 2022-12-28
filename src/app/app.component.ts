@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { distinct, Observable, of, Subject } from 'rxjs';
+import { LoginService } from './auth/login.service';
+import { LoginComponent } from './auth/login/login.component';
+import { AppUser } from './auth/model/AppUser';
 import { SettingsModel } from './nav/model/settings.model';
 import { SettingsService } from './nav/services/settings.service';
 
@@ -13,13 +15,11 @@ export class AppComponent implements OnInit {
   settingsModel?: SettingsModel;
   title = 'zoo-front';
 
-  constructor(private settingService: SettingsService) { }
+  constructor(private settingService: SettingsService, private loginService: LoginService) { }
 
   ngOnInit(): void {
     this.settingsModel = this.settingService.buildModel();
   }
-
-
 
 
 }
