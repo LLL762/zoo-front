@@ -1,20 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      rel="stylesheet"
-      [href]="settingsModel?.theme?.cssUrl ?? '#' | safe : 'resourceUrl'"
-    />
-    <title>Document</title>
-  </head>
-  <body [ngClass]="settingsModel?.font?.cssClass">
-    <header>
-      <app-nav-bar [settingsModel]="settingsModel"></app-nav-bar>
-    </header>
-    <main>
-      <router-outlet></router-outlet>
-    </main>
-  </body>
-</html>
+<link
+  rel="stylesheet"
+  [href]="settingsModel?.theme?.cssUrl ?? '#' | safe : 'resourceUrl'"
+/>
+
+<div id="main-container" [ngClass]="settingsModel?.font?.cssClass">
+  <header>
+    <app-nav-bar [settingsModel]="settingsModel"></app-nav-bar>
+  </header>
+  <main>
+    <router-outlet></router-outlet>
+  </main>
+</div>
