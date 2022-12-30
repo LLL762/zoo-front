@@ -2,16 +2,15 @@
   border-radius: 1em;
   border: unset;
   background-color: inherit;
-  padding: 0.1em;
   display: flex;
   flex-direction: column;
-  height: 4em;
-  width: 4em;
+  height: 5em;
+  width: 5em;
   text-align: center;
   justify-content: center;
   justify-items: center;
   font-family: unset;
-  min-width: 4em;
+  min-width: 5em;
 
   &:hover {
     background-color: rgb(197, 197, 197);
@@ -25,8 +24,8 @@
   svg {
     margin: auto;
     margin-bottom: 0.1em;
-    height: 1.5em;
-    width: 1.5em;
+    height: 2.2em;
+    width: 2.2em;
   }
 }
 

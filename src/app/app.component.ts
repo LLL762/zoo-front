@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginService } from './auth/login.service';
-import { LoginComponent } from './auth/login/login.component';
-import { AppUser } from './auth/model/AppUser';
 import { SettingsModel } from './nav/model/settings.model';
 import { SettingsService } from './nav/services/settings.service';
 

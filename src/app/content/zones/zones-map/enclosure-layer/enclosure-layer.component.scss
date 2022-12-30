@@ -1,0 +1,20 @@
+#zoo-map-enclosures-svg {
+  background: transparent;
+  min-width: 320px;
+  max-width: 100%;
+  width: 1600px;
+}
+
+.path-enclosure {
+  fill: transparent;
+  &:hover,
+  &:focus {
+    border: none;
+    outline: none;
+    cursor: pointer;
+    stroke-width: 2px;
+    stroke-dasharray: 4;
+    stroke: rgba(255, 255, 0, 0.774);
+    fill: rgba(30, 59, 61, 0.336);
+  }
+}

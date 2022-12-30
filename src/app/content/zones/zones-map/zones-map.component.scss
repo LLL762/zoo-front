@@ -1,0 +1,21 @@
+#zones-map-page {
+  display: flex;
+
+  #zoo-map-wrapper {
+    position: relative;
+    display: flex;
+    justify-content: center;
+
+    img {
+      min-width: 320px;
+      max-width: 90%;
+      width: 1600px;
+    }
+  }
+}
+
+#zoo-map-layer {
+  background: transparent;
+  position: absolute;
+  width: 90%;
+}

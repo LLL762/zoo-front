@@ -3,7 +3,8 @@ export class AppRoutes {
         base: "zoo",
         home: "",
         login: "/login",
-        tasks: "/tasks"
+        tasks: "/tasks",
+        zoneMap: "/zones"
     } as const;
 
     static getUri(routeName: keyof typeof AppRoutes.routes) {

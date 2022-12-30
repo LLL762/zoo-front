@@ -36,6 +36,10 @@ export class NavBarComponent implements OnInit {
     this.router.navigate([AppRoutes.getUri('home')]);
   }
 
+  goToZonesMap() {
+    this.router.navigate([AppRoutes.getUri('zoneMap')]);
+  }
+
 
 
   showSettings() {
