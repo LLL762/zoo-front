@@ -1,6 +1,7 @@
 #zones-map-page {
   display: flex;
-
+  flex-direction: column;
+  background-color: red;
   #zoo-map-wrapper {
     position: relative;
     display: flex;

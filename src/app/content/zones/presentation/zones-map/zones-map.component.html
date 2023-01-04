@@ -1,0 +1,12 @@
+<div id="zones-map-page">
+  <div id="zoo-map-wrapper">
+    <img src="/assets/images/zoo_map.svg" alt="a" loading="lazy" />
+
+    <div id="zoo-map-layer">
+      <app-enclosure-layer (enclosureIdEmitter)="setEnclosureId($event)">
+      </app-enclosure-layer>
+    </div>
+  </div>
+
+  <app-enclosure-info [enclosureId]="enclosureId"> </app-enclosure-info>
+</div>

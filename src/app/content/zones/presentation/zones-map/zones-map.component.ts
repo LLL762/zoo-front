@@ -6,14 +6,20 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./zones-map.component.scss']
 })
 export class ZonesMapComponent implements OnInit {
+  enclosureId?: string;
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  setEnclosureId(id?: string) {
+    this.enclosureId = id;
+  }
+
   goToEnclosure() {
-    console.log(7777);
+
+
 
   };
 

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-enclosure-layer',
@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EnclosureLayerComponent implements OnInit {
 
+  @Output() enclosureIdEmitter = new EventEmitter<string>();
   private enclosureIdPrefix = "zoo-map-enclosure-";
 
   constructor() { }
@@ -21,7 +22,7 @@ export class EnclosureLayerComponent implements OnInit {
   private enclosureElemOnClick = (e: any) => {
     const source = e.target;
     const id = this.getEnclosureId(source.id);
-    console.log(id);
+    this.enclosureIdEmitter.emit(id);
   }
 
   private getEnclosureId(htmlElemId?: string): string | undefined {

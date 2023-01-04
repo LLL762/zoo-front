@@ -10,14 +10,15 @@ import { LoginService } from './login.service';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import EnvUtil from 'src/app/util/EnvUtil';
+import { AppRoutes } from '../configs/routes';
 
-const doNotCheck = [EnvUtil.getUrl('LOGIN'), EnvUtil.getUrl('REFRESH_TOKEN')];
+const doNotCheck = [EnvUtil.getApiUrl('LOGIN'), EnvUtil.getApiUrl('REFRESH_TOKEN'), EnvUtil.getApiUrl('ENCLOSURES')];
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
   private readonly bearerPrefix = environment.jwt.bearerPrefix;
 
-  constructor(private loginService: LoginService, private router: Router) {}
+  constructor(private loginService: LoginService, private router: Router) { }
 
   intercept(
     req: HttpRequest<unknown>,
@@ -50,11 +51,11 @@ export class AuthInterceptor implements HttpInterceptor {
   }
 
   redirectToLogin() {
-    this.router.navigate([EnvUtil.getAppUri('LOGIN')]);
+    this.router.navigate([AppRoutes.getUri('login')]);
   }
 
   isApiRequest(req: HttpRequest<unknown>) {
-    return req.url.startsWith(EnvUtil.getUrl('BASE'));
+    return req.url.startsWith(EnvUtil.getApiUrl('BASE'));
   }
 
   setAuthHeader(req: HttpRequest<unknown>) {

@@ -1,0 +1,6 @@
+<p *ngIf="!enclosure">...</p>
+
+<div *ngIf="enclosure" id="enclosure-info">
+  <h1>{{ enclosure.name }}</h1>
+  <p>zone : {{ enclosure.zone?.name }}</p>
+</div>

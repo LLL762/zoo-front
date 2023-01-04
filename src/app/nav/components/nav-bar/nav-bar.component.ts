@@ -1,7 +1,8 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, HostListener, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoginService, LogInStatus } from 'src/app/auth/login.service';
 import { AppRoutes } from 'src/app/configs/routes';
+import { screenConfigs } from 'src/app/configs/screen.config';
 import { NavBarStatus } from '../../model/nav-bar-status';
 import { SettingsModel } from '../../model/settings.model';
 
@@ -17,6 +18,7 @@ import { SettingsModel } from '../../model/settings.model';
 export class NavBarComponent implements OnInit {
   @Input() settingsModel?: SettingsModel;
   status = new NavBarStatus();
+  screenWidth: number = window.innerWidth;
 
 
   constructor(
@@ -41,16 +43,23 @@ export class NavBarComponent implements OnInit {
   }
 
 
+  isScreenSmall() {
+    return this.screenWidth <= screenConfigs.breakpoints.small;
+  }
+
 
   showSettings() {
     this.status.showSettingsTabs = !this.status.showSettingsTabs;
-
   }
 
   isLogOut() {
     return this.loginService.getStatus() == "LOG_OUT";
   }
   ngOnInit(): void {
+  }
 
+  @HostListener('window:resize', ['$event'])
+  onWindowResize() {
+    this.screenWidth = window.innerWidth;
   }
 }

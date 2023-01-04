@@ -8,8 +8,8 @@ import { AppUser } from './model/AppUser';
 
 @Injectable()
 export class LoginService {
-  private readonly loginUrl = EnvUtil.getUrl('LOGIN');
-  private readonly refreshUrl = EnvUtil.getUrl('REFRESH_TOKEN');
+  private readonly loginUrl = EnvUtil.getApiUrl('LOGIN');
+  private readonly refreshUrl = EnvUtil.getApiUrl('REFRESH_TOKEN');
 
   private bearerSuffix = environment.jwt.bearerPrefix;
 

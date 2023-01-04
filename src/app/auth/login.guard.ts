@@ -12,7 +12,7 @@ import { LoginService } from './login.service';
   providedIn: 'root',
 })
 export class LoginGuard implements CanActivateChild {
-  constructor(private loginService: LoginService, private router: Router) {}
+  constructor(private loginService: LoginService, private router: Router) { }
 
   canActivateChild(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     const logInStatus = this.loginService.getStatus();
@@ -22,12 +22,12 @@ export class LoginGuard implements CanActivateChild {
       case 'NEED_REFRESH':
         this.loginService.refreshToken().subscribe({
           error: (err) => {
-            this.router.navigate([EnvUtil.getUrl('LOGIN')]);
+            this.router.navigate([EnvUtil.getApiUrl('LOGIN')]);
           },
         });
         return true;
       default:
-        this.router.navigate([EnvUtil.getUrl('LOGIN')]);
+        this.router.navigate([EnvUtil.getApiUrl('LOGIN')]);
         return false;
     }
   }

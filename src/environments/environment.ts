@@ -10,6 +10,7 @@ export const environment = {
       LOGIN: '/login',
       REFRESH_TOKEN: '/refresh-token',
       TASKS: '/tasks',
+      ENCLOSURES: '/enclosures'
     },
   },
   app: {

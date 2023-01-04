@@ -8,6 +8,22 @@
     <svg viewBox="0 0 24 24">
       <path
         fill="currentColor"
+        d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z"
+      />
+    </svg>
+    <p>menu</p>
+  </button>
+
+  <button
+    *ngIf="!isScreenSmall()"
+    (click)="goToLogIn()"
+    class="icon-btn"
+    type="button"
+    title="click to go to the home page"
+  >
+    <svg viewBox="0 0 24 24">
+      <path
+        fill="currentColor"
         d="M10,20V14H14V20H19V12H22L12,3L2,12H5V20H10Z"
       />
     </svg>
@@ -15,6 +31,7 @@
   </button>
 
   <button
+    *ngIf="!isScreenSmall()"
     (click)="goToZonesMap()"
     class="icon-btn"
     type="button"
@@ -29,27 +46,13 @@
     <p>zones</p>
   </button>
 
-  <button
-    (click)="goToLogIn()"
-    class="icon-btn"
-    type="button"
-    title="click to go to the home page"
-  >
-    <svg viewBox="0 0 24 24">
-      <path
-        fill="currentColor"
-        d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z"
-      />
-    </svg>
-    <p>more</p>
-  </button>
-
   <div id="app-title-container">
     <h1>Sigil Zoo App</h1>
     <p>Zoo management tool</p>
   </div>
 
   <button
+    *ngIf="!isScreenSmall()"
     (click)="showSettings()"
     class="icon-btn"
     type="button"
@@ -64,7 +67,12 @@
     <p>settings</p>
   </button>
 
-  <button class="icon-btn" type="button" title="click to go to the help page">
+  <button
+    *ngIf="!isScreenSmall()"
+    class="icon-btn"
+    type="button"
+    title="click to go to the help page"
+  >
     <svg viewBox="0 0 24 24">
       <path
         fill="currentColor"

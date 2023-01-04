@@ -3,13 +3,13 @@ import { Injectable } from '@angular/core';
 import { tap } from 'rxjs';
 import EnvUtil from 'src/app/util/EnvUtil';
 
-const baseUrl = EnvUtil.getUrl('TASKS');
+const baseUrl = EnvUtil.getApiUrl('TASKS');
 
 @Injectable({
   providedIn: 'root',
 })
 export class TaskService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   getAllTasks() {
     return this.http.get<any>(baseUrl);
