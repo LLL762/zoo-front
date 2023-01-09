@@ -48,14 +48,19 @@ export class NavBarComponent implements OnInit {
   }
 
 
-  showSettings() {
+  showSettings(event: any) {
     this.status.showSettingsTabs = !this.status.showSettingsTabs;
+    event.stopPropagation();
   }
 
   isLogOut() {
     return this.loginService.getStatus() == "LOG_OUT";
   }
   ngOnInit(): void {
+  }
+
+  @HostListener('document:click', ['$event']) onDocumentClick(event: any) {
+    this.status.showSettingsTabs = false;
   }
 
   @HostListener('window:resize', ['$event'])

@@ -53,7 +53,7 @@
 
   <button
     *ngIf="!isScreenSmall()"
-    (click)="showSettings()"
+    (click)="showSettings($event)"
     class="icon-btn"
     type="button"
     title="click to toggle settings tab"
@@ -117,5 +117,6 @@
 
 <app-settings-tab
   [hidden]="!status.showSettingsTabs"
+  (click)="$event.stopPropagation()"
   [settingsModel]="settingsModel"
 ></app-settings-tab>
